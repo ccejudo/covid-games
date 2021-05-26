@@ -1,4 +1,5 @@
 import './App.css';
+import GameQuestion from './layouts/GameQuestion';
 
 function App() {
   return (
