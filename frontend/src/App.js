@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { Switch, Route, Redirect} from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation} from 'react-router-dom';
 
 import GameQuestion from './layouts/GameQuestion';
-import Menu from './layouts/Menu'
+import Menu from './layouts/Menu';
+import QuestionResult from './layouts/QuestionResult';
 
 function App() {
-  const [ isAuth, setIsAuth ] = useState(true)
+  const [ isAuth, setIsAuth ] = useState(true);
+  let location = useLocation();
+
   return (
     <Switch>
         { isAuth? <>
-          <Route exact path="/menu">
-            <Menu/>
-          </Route>
-          <Route exact path="/game">
-            <GameQuestion/>
-          </Route>
+          <Route exact path="/menu" component={Menu}/>
+          <Route exact path="/game" component={GameQuestion}/>
+          <Route exact path="/result" component={QuestionResult}/>
           <Route exact path="/">
             <Redirect to="/menu"/>
           </Route>
