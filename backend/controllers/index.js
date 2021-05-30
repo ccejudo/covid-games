@@ -1,3 +1,3 @@
-const { getQuestions } = require('./getQuestions')
+const { getQuestions, getSpecific } = require('./getQuestions')
 
-module.exports = { getQuestions }
+module.exports = { getQuestions, getSpecific }

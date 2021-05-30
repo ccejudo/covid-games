@@ -19,7 +19,7 @@ function Menu(props) {
             </Grid>
             <Grid container style={{height:'50vh'}} item xs={12}>
                 <Grid item xs={12} style={{padding:'2%'}}>
-                    <Link to={{pathname: "game", state: {number: 1, category: 0}}} style={{ textDecoration: 'none' }}>
+                    <Link to={{pathname: "game", state: {number: 1, category: 0, points: 456}}} style={{ textDecoration: 'none' }}>
                         <Button 
                             variant="contained" 
                             color="primary"

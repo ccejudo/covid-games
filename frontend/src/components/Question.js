@@ -11,6 +11,8 @@ function Question(props){
     const [helperText2, setHelper2] = useState('The higher the risk, the higher the reward');
 
     let categories = ['History', 'Science', 'Training', 'Sports', 'Geography'];
+    let wins = [2, 4, 6];
+    let losses = [0, 1, 2];
 
     const history = useHistory();
 
@@ -28,6 +30,9 @@ function Question(props){
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        let correct;
+        let diff;
+        let newPoints=props.points;
         if(ansValue == null){
             setHelper('Please select an option.');
             setAnsError(true);
@@ -41,14 +46,19 @@ function Question(props){
             console.log(ansValue);
             console.log(betValue);
             if(ansValue==props.question.answer){
-                console.log("Nice");
+                correct=true;
+                newPoints += wins[parseInt(betValue)];
+                diff = wins[parseInt(betValue)];
             }
             else{
-                console.log("Loser");
+                correct=false;
+                newPoints -= losses[parseInt(betValue)];
+                diff = losses[parseInt(betValue)];
             }
+            console.log(diff, newPoints)
             history.push({
                 pathname: '/result',
-                state: {number: props.number, category: props.category}
+                state: {number: props.number, category: props.category, points: newPoints, ans: props.question.option[props.question.answer], correct:correct, diff: diff}
             });
         }
       };

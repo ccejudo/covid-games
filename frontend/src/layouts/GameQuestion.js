@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Question from '../components/Question';
 import { Grid, Button } from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 
 import CovidLogoWhite from '../images/logos/covid_white.png';
 import KnowledgeLogoWhite from '../images/logos/knowledge_white.png';
@@ -9,18 +10,23 @@ function GameQuestion(props){
     const [questionData, setQuestionData] = useState(props.location.state);
     const [question, setQuestion] = useState({description: "Knowledge Rally", option: ['?', '?', '?', '?']});
     const [disabled, setDisabled] = useState(true);
+
     let categories = ['History', 'Science', 'Training', 'Sports', 'Geography'];
     let qNum = questionData.number;
     let qCat = questionData.category;
+    let points = questionData.points;
+
+    const history = useHistory();
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/get-questions")
+        fetch(`http://localhost:4000/api/get-specific/${qCat}`)
             .then(res =>
                 res.json())
             .then(
                 result => {
                     console.log(result.questions);
-                    setQuestion(result.questions[0]);
+                    let rand = Math.floor(Math.random() * result.questions.length);  
+                    setQuestion(result.questions[rand]);
                     setDisabled(false);
                 },
                 error => {
@@ -28,6 +34,12 @@ function GameQuestion(props){
                 }
             );
       }, []);
+
+    function returnMenu(){
+        history.push({
+            pathname: '/menu'
+        });
+    }
 
     return (
         <Grid container spacing={3} align='center'>
@@ -37,14 +49,23 @@ function GameQuestion(props){
                 </Grid>
             </Grid>
 
-            <Grid container item xs={12}>
-                <Grid item xs={6} style={{color:'white'}}>
+            <Grid container item xs={12} alignItems="center">
+                <Grid item xs={4} style={{color:'white'}}>
                     <h1>SHOWTIME</h1>
                 </Grid>
-                <Grid item xs={6} style={{color:'white'}}>
-                    <h2>Current Points: <label>500</label></h2>
+                <Grid item xs={4} style={{color:'white'}}>
+                    <h2>Current Points: <label>{points}</label></h2>
                 </Grid>
-                <Question number={qNum} category={qCat} question={question} disabled={disabled}/>
+                <Grid item xs={4} style={{color:'white'}}>
+                    <Button variant="contained" color="primary" onClick={returnMenu}
+                            style={{
+                                color:'black',
+                                backgroundColor: 'white'
+                            }}>
+                                Return to Menu
+                    </Button>
+                </Grid>
+                <Question number={qNum} category={qCat} question={question} disabled={disabled} points={points}/>
             </Grid>
 
             <Grid container item xs={12} style={{paddingTop:'2%'}} alignContent='flex-end'>
