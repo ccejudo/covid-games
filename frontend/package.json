@@ -2,6 +2,7 @@
   "name": "covid-games-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://main.d2kzctxv59a51d.amplifyapp.com/",
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
     "@material-ui/core": "^4.11.4",
