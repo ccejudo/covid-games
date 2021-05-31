@@ -47,4 +47,30 @@ const getScores = async (req, res) => {
     }
 }
 
-module.exports = { getScores }
+const updateScore = async (req, res) => {
+    console.log('update')
+    try {
+        client.connect( (err) => {
+            if (err) {
+                console.log(err)
+                res.send(err)
+            }
+            const db =  client.db('knowledge-rally')
+
+            db.collection('users').updateOne({username: "chickenriceandbeans"}, { $set: { score: req.body.score }})
+                .then( result => {
+                    console.log(result)
+                    res.json({questions: result})
+                })
+                .catch( error => {
+                    res.send(error);
+                })
+        })
+
+    } catch (err) {
+        console.log(err);
+        res.send(err)
+    }
+}
+
+module.exports = { getScores, updateScore }

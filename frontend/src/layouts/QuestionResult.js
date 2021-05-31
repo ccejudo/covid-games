@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Button } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import CovidLogoWhite from '../images/logos/covid_white.png';
 import KnowledgeLogoWhite from '../images/logos/knowledge_white.png';
@@ -17,6 +18,13 @@ function QuestionResult(props){
     console.log(correct)
 
     const history = useHistory();
+
+    const updateScore = () => {
+        axios.post( 'http://localhost:4000/api/update-score', {score: points} )
+            .catch(err => {
+                console.error(err);
+            })
+    }
 
     function returnMenu(){
         history.push({
@@ -99,6 +107,7 @@ function QuestionResult(props){
                                     color:'black',
                                     backgroundColor: 'white'
                                 }}
+                                onClick={ updateScore }
                             >
                                 Finish Game
                             </Button>

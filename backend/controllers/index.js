@@ -1,4 +1,5 @@
 const { getQuestions, getSpecific } = require('./getQuestions')
-const { getScores } = require('./getScores')
+const { getScores, updateScore } = require('./getScores')
+const { getUser } = require('./getUser')
 
-module.exports = { getQuestions, getSpecific, getScores }
+module.exports = { getQuestions, getSpecific, getScores, getUser, updateScore }
