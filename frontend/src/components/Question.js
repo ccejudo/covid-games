@@ -74,12 +74,14 @@ function Question(props){
                     <Box border={1} borderColor="white">
                         <FormControl error={ansError} component="fieldset">
                         <h3 style={{color:'white'}}>{props.question.description}</h3>
-                            <RadioGroup aria-label="answer" name="question" value={ansValue} onChange={handleAnswerChange}>
-                                <FormControlLabel style={{color: 'white', borderRadius: 3}} value="0" control={<Radio style={{color: 'green'}} />} label={props.question.option[0]}/>
-                                <FormControlLabel style={{color: 'white', borderRadius: 3}} value="1" control={<Radio style={{color: 'green'}} />} label={props.question.option[1]}/>
-                                <FormControlLabel style={{color: 'white', borderRadius: 3}} value="2" control={<Radio style={{color: 'green'}} />} label={props.question.option[2]}/>
-                                <FormControlLabel style={{color: 'white', borderRadius: 3}} value="3" control={<Radio style={{color: 'green'}} />} label={props.question.option[3]}/>
-                            </RadioGroup>
+                            <Grid container alignItems="flex-start">
+                                <RadioGroup aria-label="answer" name="question" value={ansValue} onChange={handleAnswerChange}>
+                                    <FormControlLabel style={{color: 'white', borderRadius: 3}} value="0" control={<Radio style={{color: 'green'}} />} label={props.question.option[0]}/>
+                                    <FormControlLabel style={{color: 'white', borderRadius: 3}} value="1" control={<Radio style={{color: 'green'}} />} label={props.question.option[1]}/>
+                                    <FormControlLabel style={{color: 'white', borderRadius: 3}} value="2" control={<Radio style={{color: 'green'}} />} label={props.question.option[2]}/>
+                                    <FormControlLabel style={{color: 'white', borderRadius: 3}} value="3" control={<Radio style={{color: 'green'}} />} label={props.question.option[3]}/>
+                                </RadioGroup>
+                            </Grid>
                             <FormHelperText style={{color:'white'}}>{helperText}</FormHelperText>
                             <br></br>
                             {
@@ -99,8 +101,9 @@ function Question(props){
                             <Button type="submit" variant="contained" style={{color: 'black', background: 'white'}} disabled={props.disabled}>
                                 Check Answer
                             </Button>
-                            <br></br>
+                        <br></br>
                         </FormControl>
+                        <br></br>
                     </Box>
                 </Grid>
             </form>

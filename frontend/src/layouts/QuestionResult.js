@@ -100,7 +100,7 @@ function QuestionResult(props){
                                     backgroundColor: 'white'
                                 }}
                             >
-                                Return to Menu
+                                Finish Game
                             </Button>
                         </Link>)
                     }
