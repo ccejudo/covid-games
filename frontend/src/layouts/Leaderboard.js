@@ -8,7 +8,7 @@ function Leaderboard() {
     const [ global, setGlobal ] = useState(true);
     const [ isLoading, setLoading] = useState(false);
     const history = useHistory();
-    const room = 2001
+    const room = 2004
 
     const handleSwitch = () => { setGlobal(!global) }
 
@@ -74,7 +74,7 @@ function Leaderboard() {
     return (
         <Grid container spacing={5} align="center">
             <Grid item xs={12}>
-                <h1 style={{color: 'white', fontSize:'3rem'}}>Leaderboard {global? "Global" : "2001"}</h1>
+                <h1 style={{color: 'white', fontSize:'3rem'}}>Leaderboard {global? "Global" : room}</h1>
                 <Button 
                 variant="contained" 
                 color="primary" 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Avatar } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -39,7 +39,11 @@ function Menu(props) {
             </Grid>
             { !isLoading && user
              ? <Grid container style={{height:'50vh'}} item xs={12}>
+                    <Grid item xs={12}>
+                        <h2> <Avatar src={user.avatar} alt='Avatar'/> {user.username} | {user.room}</h2>
+                    </Grid>
                     <Grid item xs={12} style={{padding:'2%'}}>
+
                         <Link to={{pathname: "game", state: {number: 1, category: 0, points: user.score}}} style={{ textDecoration: 'none' }}>
                             <Button 
                                 variant="contained" 

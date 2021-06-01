@@ -30,7 +30,7 @@ const getScores = async (req, res) => {
                 }
                 const db =  client.db('knowledge-rally')
 
-                db.collection('users').find().sort( { score: -1 } ).toArray(function(err, result) {
+                db.collection('users').find( { room : req.body.room }).sort( { score: -1 } ).toArray(function(err, result) {
                     if (err) {
                         console.log(err)
                         res.send(err)
